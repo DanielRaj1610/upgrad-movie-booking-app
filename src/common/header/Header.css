@@ -1,0 +1,27 @@
+.header {
+	height: 36px;
+	background-color: #222;
+	padding: 8px 32px 8px 16px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header_img img {
+	background-color: #ff7f7f;
+	height: 35px;
+    animation: rotate-y 8s linear infinite;
+}
+.header_buttons{
+    display: flex;
+    gap: 10px;
+}
+
+@keyframes rotate-y {
+    0%{
+       transform: rotatey(0deg);
+      }
+   100%{
+       transform: rotatey(360deg);
+      }
+   }

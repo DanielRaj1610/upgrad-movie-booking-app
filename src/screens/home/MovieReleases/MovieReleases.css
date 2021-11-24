@@ -1,0 +1,15 @@
+.movieReleases {
+	display: grid;
+	display: grid;
+	grid-template-columns: 76% 24%;
+	grid-template-rows: 1fr;
+	grid-row-gap: 30px;
+	margin: 16px;
+	height: 50rem;
+}
+.movies {
+}
+
+.filters {
+	padding: 1rem;
+}
