@@ -17,6 +17,8 @@ export default function GlobalProvider({children}) {
     const [isRegistered, setIsRegistered] = useState(false);
     const [authHeader, setAuthHeader] = useState('');
     const [loginResponse, setLoginResponse] = useState({});
+    const [movieId, setMovieId] = useState('');
+    const updateMovieId = value => setMovieId(value);
     const updateIsLoggedIn = (value) => setIsLoggedIn(value);
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -87,6 +89,31 @@ export default function GlobalProvider({children}) {
 
     }
 
+    const callLogOut = async () => {
+        const token = window.sessionStorage.getItem('access-token');
+
+        try {
+            const response = await fetch(`${baseUrl}/auth/logout`, {
+                method: "POST",
+                headers: {
+                    "accept": "application/json;charset=UTF-8",
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            if (response.ok) {
+                alert("Logged Out!")
+                setIsLoggedIn(false);
+            } else {
+                const error = new Error();
+                error.message = 'Something went wrong!'
+            }
+        } catch (e) {
+            alert(`Error ${e.message}`)
+        }
+
+    }
+
+
     return (
         <GlobalContext.Provider value={{
             isLoggedIn,
@@ -98,7 +125,10 @@ export default function GlobalProvider({children}) {
             modalIsOpen,
             isRegistered,
             callSignUp,
-            baseUrl
+            baseUrl,
+            movieId,
+            updateMovieId,
+            callLogOut
         }}>
             {children}
         </GlobalContext.Provider>

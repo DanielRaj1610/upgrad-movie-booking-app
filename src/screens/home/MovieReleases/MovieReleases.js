@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import './MovieReleases.css';
 import MovieFilters from './MovieFilters/MovieFilters';
 import {useMovieReleases} from '../Store';
+import {useGlobals} from "../../../common/store";
 
 
 const styles = theme => ({
@@ -38,10 +39,8 @@ const styles = theme => ({
 
 const MovieReleases = (props) => {
     const {classes} = props;
+    const {updateMovieId} = useGlobals();
     const {movies, ismoviesLoaded} = useMovieReleases();
-    // const history = useHistory();
-
-
     const dateConversion = (value) => {
 
         let dateObject = new Date(Date.parse(value));
@@ -56,7 +55,8 @@ const MovieReleases = (props) => {
                     <GridList cellHeight={350} cols={4} classes={{root: classes.overallGrid}}>
                         {movies.map((tile, index) => (
                             <GridListTile key={`${tile.img}-${index}`} classes={{root: classes.overallTile}}
-                                          onClick={() => console.log(tile)} component={Link} to={`/movie/${tile.id}`}>
+                                          onClick={() => updateMovieId(tile.id)} component={Link}
+                                          to={`/movie/${tile.id}`}>
                                 <img src={tile.poster_url} className='gridImage' alt={tile.title}/>
                                 <GridListTileBar
                                     title={tile.title}

@@ -4,6 +4,7 @@ import MovieReleases from '../home/MovieReleases/MovieReleases';
 import MovieReleasesProvider from '../home/Store';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './Home.css';
+import Header from "../../common/header/Header";
 
 
 function Home() {
@@ -30,8 +31,8 @@ function Home() {
 
 
     return (
-
         <div>
+            <Header baseUrl={window.location.pathname}/>
             <div className='homeBar'>
                 <p className='homeBar_text'>Upcoming Movies</p>
             </div>
