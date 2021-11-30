@@ -1,0 +1,20 @@
+.detailsSection {
+    display: flex;
+    gap: 2rem;
+}
+
+.details {
+    margin: 1rem;
+}
+
+.detailsPoster {
+    flex: 2;
+}
+
+.detailsContent {
+    flex: 6;
+}
+
+.detailsCasts {
+    flex: 2;
+}
