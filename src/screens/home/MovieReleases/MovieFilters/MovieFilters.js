@@ -114,7 +114,7 @@ const MovieFilters = (props) => {
 
     useEffect(() => {
         const fetchFilters = async () => {
-            const genresList = await fetch("http://localhost:8085/api/v1/genres");
+            const genresList = await fetch("/api/v1/genres");
             const genrejson = await genresList.json();
 
             console.log(genrejson.genres)
@@ -122,7 +122,7 @@ const MovieFilters = (props) => {
                 setGenres([...genrejson.genres]);
             }
 
-            const artistList = await fetch("http://localhost:8085/api/v1/artists");
+            const artistList = await fetch("/api/v1/artists");
             const artistjson = await artistList.json();
             // setstartMovies(json);
 

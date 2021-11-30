@@ -6,6 +6,7 @@ import React from 'react';
 import './LoginForm.css';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import {useGlobals} from "../../store";
 
 const validationSchema = yup.object({
     userName: yup
@@ -19,6 +20,7 @@ const validationSchema = yup.object({
 
 
 const LoginForm = () => {
+    const {callLogin} =useGlobals();
 
     const [values, setValues] = React.useState({
         showPassword: false,
@@ -31,7 +33,7 @@ const LoginForm = () => {
         },
         validationSchema: validationSchema,
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            callLogin(values.userName,values.password);
         },
     });
 
@@ -87,7 +89,7 @@ const LoginForm = () => {
                 />
                 <FormHelperText id="password-error-text">{formik.touched.password && formik.errors.password}</FormHelperText>
             </FormControl>
-            <Button type='submit' variant='contained' color='primary'>Submit</Button>
+            <Button type='submit' variant='contained' color='primary'>LOGIN</Button>
         </form>
     );
 }

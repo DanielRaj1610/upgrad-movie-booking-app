@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './RegisterForm.css';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Button, FormControl, FormHelperText, IconButton, Input, InputAdornment, InputLabel, Typography } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+import {useGlobals} from "../../store";
 
 
 const digitsOnly = /[0-9]/g;
@@ -39,6 +40,8 @@ const RegisterForm = () => {
         isRegisterSuccess: false
     });
 
+    const {isRegistered,callSignUp }=useGlobals();
+
     const formik = useFormik({
         initialValues: {
             firstName: '',
@@ -49,7 +52,7 @@ const RegisterForm = () => {
         },
         validationSchema: validationSchema,
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            callSignUp(values);
             setValues({ ...values, isRegisterSuccess: true });
         },
     });
@@ -144,8 +147,8 @@ const RegisterForm = () => {
                 />
                 <FormHelperText id="contactNumber-error-text">{formik.touched.contactNumber && formik.errors.contactNumber}</FormHelperText>
             </FormControl>
-            <Typography variant='p'>{values.isRegisterSuccess ? "Registration Successful. Please Login!" : ''}</Typography>
-            <Button type='submit' variant='contained' color='primary'>Submit</Button>
+            <Typography>{isRegistered ? "Registration Successful. Please Login!" : ''}</Typography>
+            <Button type='submit' variant='contained' color='primary'>REGISTER</Button>
         </form>
     );
 }

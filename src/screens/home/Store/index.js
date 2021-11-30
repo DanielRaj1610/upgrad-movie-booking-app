@@ -25,7 +25,7 @@ export default function MovieReleasesProvider({
 
     useEffect(() => {
         const fetchMovie = async () => {
-            const response = await fetch("http://localhost:8085/api/v1/movies?page=1&status=RELEASED")
+            const response = await fetch("/api/v1/movies?page=1&status=RELEASED")
             const json = await response.json();
             // setstartMovies(json);
             console.log(json.movies)

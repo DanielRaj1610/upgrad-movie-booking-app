@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../../common/header/Header';
 import SingleLineGridList from '../home/GridList/GridList';
 import MovieReleases from '../home/MovieReleases/MovieReleases';
 import MovieReleasesProvider from '../home/Store';
@@ -14,9 +13,8 @@ function Home() {
 
     useEffect(() => {
         const fetchMovie = async () => {
-            const response = await fetch("http://localhost:8085/api/v1/movies?page=1&limit=6")
+            const response = await fetch("/api/v1/movies?page=1&limit=6")
             const json = await response.json();
-            // setstartMovies(json);
             let value = [];
             console.log(json.movies)
             if (json.movies) {
@@ -34,7 +32,6 @@ function Home() {
     return (
 
         <div>
-            <Header />
             <div className='homeBar'>
                 <p className='homeBar_text'>Upcoming Movies</p>
             </div>

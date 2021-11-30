@@ -1,6 +1,7 @@
 import { Card, CardContent, GridList, GridListTile, GridListTileBar } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import React from 'react';
+import { Link  } from 'react-router-dom';
 import './MovieReleases.css';
 import MovieFilters from './MovieFilters/MovieFilters';
 import { useMovieReleases } from '../Store';
@@ -38,23 +39,10 @@ const styles = theme => ({
 
 const MovieReleases = (props) => {
     const { classes } = props;
-    // const [movies, setMovies] = useState([]);
     const { movies, ismoviesLoaded } = useMovieReleases();
+    // const history = useHistory();
 
 
-    // useEffect(() => {
-    //     const fetchMovie = async () => {
-    //         const response = await fetch("http://localhost:8085/api/v1/movies?page=1&status=RELEASED")
-    //         const json = await response.json();
-    //         // setstartMovies(json);
-    //         console.log(json.movies)
-    //         if (json.movies) {
-    //             setMovies([...json.movies]);
-    //         }
-    //     }
-    //     fetchMovie();
-
-    // }, []);
 
     const dateConversion = (value) => {
 
@@ -69,7 +57,8 @@ const MovieReleases = (props) => {
                 <div className='movies'>
                     <GridList cellHeight={350} cols={4} classes={{ root: classes.overallGrid }}>
                         {movies.map((tile, index) => (
-                            <GridListTile key={`${tile.img}-${index}`} classes={{ root: classes.overallTile }} onClick={() => console.log(tile)}>
+                            <GridListTile key={`${tile.img}-${index}`} classes={{ root: classes.overallTile }}
+                                          onClick={() =>console.log(tile)} component={Link} to={`/movie/${tile.id}`}>
                                 <img src={tile.poster_url} className='gridImage' alt={tile.title} />
                                 <GridListTileBar
                                     title={tile.title}

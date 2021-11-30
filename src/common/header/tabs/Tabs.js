@@ -6,7 +6,7 @@ import './Tabs.css'
 
 
 function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props;
 
     return (
         <div
@@ -39,9 +39,8 @@ function a11yProps(index) {
 }
 
 
-
 const CenterTabs = (props) => {
-    const { tabs } = props;
+    const {tabs} = props;
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -62,11 +61,9 @@ const CenterTabs = (props) => {
                     <Tab key={`${item}-${index}`} label={item.tabName} {...a11yProps(index)} />
                 ))}
             </Tabs>
-            <div
-                index={value}
-            >
+            <div index={value}>
                 {tabs.map((item, index) => (
-                    <TabPanel key={`${item}-${index}1`} value={value} index={index} >
+                    <TabPanel key={`${item}-${index}1`} value={value} index={index}>
                         {item.tabContent}
                     </TabPanel>
                 ))}
