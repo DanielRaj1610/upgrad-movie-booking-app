@@ -1,9 +1,22 @@
-import { Button, Checkbox, FormControl, FormHelperText, Input, InputLabel, ListItemText, MenuItem, Select, TextField, Typography, withStyles } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import {
+    Button,
+    Checkbox,
+    FormControl,
+    FormHelperText,
+    Input,
+    InputLabel,
+    ListItemText,
+    MenuItem,
+    Select,
+    TextField,
+    Typography,
+    withStyles
+} from '@material-ui/core';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import './MovieFilters.css';
-import { useFormik } from 'formik';
-import { useMovieReleases } from '../../Store';
+import {useFormik} from 'formik';
+import {useMovieReleases} from '../../Store';
 
 
 const styles = theme => ({
@@ -21,9 +34,9 @@ const styles = theme => ({
 
 const MovieFilters = (props) => {
 
-    const { classes } = props;
+    const {classes} = props;
 
-    const { movies, updateMovies } = useMovieReleases();
+    const {movies, updateMovies} = useMovieReleases();
     const [genres, setGenres] = useState([]);
     const [artist, setartist] = useState([]);
 
@@ -84,8 +97,8 @@ const MovieFilters = (props) => {
             const d2 = dateTo.split("/");
 
 
-            const from = new Date(d1[2], parseInt(d1[1]) - 1, d1[0]);
-            const to = new Date(d2[2], parseInt(d2[1]) - 1, d2[0]);
+            const from = new Date(d1[2], parseInt(d1[1]) - 1, d1[0], 0, 0, 0, 0);
+            const to = new Date(d2[2], parseInt(d2[1]) - 1, d2[0], 0, 0, 0, 0);
 
             if (from > to) {
                 alert("Release Date Start value cannot be greater than Release Date end value")
@@ -94,9 +107,8 @@ const MovieFilters = (props) => {
             movies.forEach(item => {
                 const dateCheck = formatCourseDate(item.release_date);
                 const c = dateCheck.split("/");
-                const check = new Date(c[2], parseInt(c[1]) - 1, c[0]);
-                console.log(check > from && check < to)
-
+                const check = new Date(c[2], parseInt(c[1]) - 1, c[0], 0, 0, 0, 0);
+                if (check > from && check < to) filteredval.push(item);
             })
         } else {
             alert("Both Release Start Date and Release End Date is required")
@@ -144,11 +156,10 @@ const MovieFilters = (props) => {
             releaseDateStart: '',
             releaseDateEnd: ''
         },
-        onSubmit: ({ movieName, genre, artist, releaseDateEnd, releaseDateStart }) => {
+        onSubmit: ({movieName, genre, artist, releaseDateEnd, releaseDateStart}) => {
             validation(movieName, genre, artist, releaseDateEnd, releaseDateStart);
         },
     });
-
 
 
     return (
@@ -160,7 +171,8 @@ const MovieFilters = (props) => {
                 e.preventDefault();
                 formik.handleSubmit();
             }}>
-                <FormControl className={classes.formControl} variant='filled' fullWidth error={formik.touched.movieName && Boolean(formik.errors.movieName)}>
+                <FormControl className={classes.formControl} variant='filled' fullWidth
+                             error={formik.touched.movieName && Boolean(formik.errors.movieName)}>
                     <InputLabel htmlFor="movieName">Movie Name</InputLabel>
                     <Input
                         id="movieName"
@@ -170,10 +182,12 @@ const MovieFilters = (props) => {
                         onChange={formik.handleChange}
                         aria-describedby="movieName"
                     />
-                    <FormHelperText id="movieName-error-text">{formik.touched.movieName && formik.errors.movieName}</FormHelperText>
+                    <FormHelperText
+                        id="movieName-error-text">{formik.touched.movieName && formik.errors.movieName}</FormHelperText>
                 </FormControl>
                 {genres.length > 0 ?
-                    <FormControl className={classes.formControl} variant='filled' fullWidth error={formik.touched.genre && Boolean(formik.errors.genre)}>
+                    <FormControl className={classes.formControl} variant='filled' fullWidth
+                                 error={formik.touched.genre && Boolean(formik.errors.genre)}>
                         <InputLabel htmlFor="genre">Genres</InputLabel>
                         <Select
                             multiple
@@ -181,20 +195,22 @@ const MovieFilters = (props) => {
                             onChange={(e) => formik.handleChange(e)}
                             aria-describedby="genre"
                             name='genre'
-                            input={<Input id="genre" />}
+                            input={<Input id="genre"/>}
                             renderValue={selected => selected.join(', ')}
                         >
                             {genres.map(item => (
                                 <MenuItem key={item.id} value={item.genre}>
-                                    <Checkbox checked={formik.values.genre.indexOf(item.genre) > -1} />
-                                    <ListItemText primary={item.genre} />
+                                    <Checkbox checked={formik.values.genre.indexOf(item.genre) > -1}/>
+                                    <ListItemText primary={item.genre}/>
                                 </MenuItem>
                             ))}
                         </Select>
-                        <FormHelperText id="genre-error-text">{formik.touched.genre && formik.errors.genre}</FormHelperText>
+                        <FormHelperText
+                            id="genre-error-text">{formik.touched.genre && formik.errors.genre}</FormHelperText>
                     </FormControl> : ''}
                 {artist.length > 0 ?
-                    <FormControl className={classes.formControl} variant='filled' fullWidth error={formik.touched.artist && Boolean(formik.errors.artist)}>
+                    <FormControl className={classes.formControl} variant='filled' fullWidth
+                                 error={formik.touched.artist && Boolean(formik.errors.artist)}>
                         <InputLabel htmlFor="artist">Artists</InputLabel>
                         <Select
                             multiple
@@ -202,17 +218,19 @@ const MovieFilters = (props) => {
                             onChange={(e) => formik.handleChange(e)}
                             aria-describedby="artist"
                             name='artist'
-                            input={<Input id="artist" />}
+                            input={<Input id="artist"/>}
                             renderValue={selected => selected.join(', ')}
                         >
                             {artist.map(item => (
                                 <MenuItem key={item.id} value={`${item.first_name} ${item.last_name}`}>
-                                    <Checkbox checked={formik.values.artist.indexOf(`${item.first_name} ${item.last_name}`) > -1} />
-                                    <ListItemText primary={`${item.first_name} ${item.last_name}`} />
+                                    <Checkbox
+                                        checked={formik.values.artist.indexOf(`${item.first_name} ${item.last_name}`) > -1}/>
+                                    <ListItemText primary={`${item.first_name} ${item.last_name}`}/>
                                 </MenuItem>
                             ))}
                         </Select>
-                        <FormHelperText id="artist-error-text">{formik.touched.artist && formik.errors.artist}</FormHelperText>
+                        <FormHelperText
+                            id="artist-error-text">{formik.touched.artist && formik.errors.artist}</FormHelperText>
                     </FormControl> : ''}
                 <TextField
                     id="date"

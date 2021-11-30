@@ -1,10 +1,10 @@
-import { Button, FormControl, FormHelperText, IconButton, Input, InputLabel } from '@material-ui/core';
+import {Button, FormControl, FormHelperText, IconButton, Input, InputLabel} from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import React from 'react';
 import './LoginForm.css';
-import { useFormik } from 'formik';
+import {useFormik} from 'formik';
 import * as yup from 'yup';
 import {useGlobals} from "../../store";
 
@@ -20,7 +20,7 @@ const validationSchema = yup.object({
 
 
 const LoginForm = () => {
-    const {callLogin} =useGlobals();
+    const {callLogin} = useGlobals();
 
     const [values, setValues] = React.useState({
         showPassword: false,
@@ -33,20 +33,18 @@ const LoginForm = () => {
         },
         validationSchema: validationSchema,
         onSubmit: values => {
-            callLogin(values.userName,values.password);
+            callLogin(values.userName, values.password);
         },
     });
 
 
     const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
+        setValues({...values, showPassword: !values.showPassword});
     };
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-
-
 
 
     return (
@@ -64,7 +62,8 @@ const LoginForm = () => {
                     onChange={formik.handleChange}
                     aria-describedby="username"
                 />
-                <FormHelperText id="userName-error-text">{formik.touched.userName && formik.errors.userName}</FormHelperText>
+                <FormHelperText
+                    id="userName-error-text">{formik.touched.userName && formik.errors.userName}</FormHelperText>
             </FormControl>
             <FormControl fullWidth required error={formik.touched.password && Boolean(formik.errors.password)}>
                 <InputLabel htmlFor="password">Password</InputLabel>
@@ -82,12 +81,13 @@ const LoginForm = () => {
                                 onClick={handleClickShowPassword}
                                 onMouseDown={handleMouseDownPassword}
                             >
-                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                {values.showPassword ? <Visibility/> : <VisibilityOff/>}
                             </IconButton>
                         </InputAdornment>
                     }
                 />
-                <FormHelperText id="password-error-text">{formik.touched.password && formik.errors.password}</FormHelperText>
+                <FormHelperText
+                    id="password-error-text">{formik.touched.password && formik.errors.password}</FormHelperText>
             </FormControl>
             <Button type='submit' variant='contained' color='primary'>LOGIN</Button>
         </form>

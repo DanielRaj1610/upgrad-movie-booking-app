@@ -13,8 +13,8 @@ export function useMovieReleases() {
 }
 
 export default function MovieReleasesProvider({
-    children,
-}) {
+                                                  children,
+                                              }) {
 
     const [movies, setMovies] = useState([]);
     const [ogMoviesValues, setogMoviesValues] = useState([]);
@@ -40,7 +40,7 @@ export default function MovieReleasesProvider({
 
     return (
         <MovieReleasesContext.Provider
-            value={{ movies, ismoviesLoaded, updateMovies, ogMoviesValues }}
+            value={{movies, ismoviesLoaded, updateMovies, ogMoviesValues}}
         >
             {children}
         </MovieReleasesContext.Provider>

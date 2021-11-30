@@ -23,6 +23,7 @@
   },
   "proxy": "http://localhost:8085",
   "devDependencies": {
-    "@types/react-modal": "^3.13.1"
+    "@types/react-modal": "^3.13.1",
+    "prop-types": "^15.7.2"
   }
 }

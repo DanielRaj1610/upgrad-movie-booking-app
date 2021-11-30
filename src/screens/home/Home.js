@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import SingleLineGridList from '../home/GridList/GridList';
 import MovieReleases from '../home/MovieReleases/MovieReleases';
 import MovieReleasesProvider from '../home/Store';
@@ -19,7 +19,7 @@ function Home() {
             console.log(json.movies)
             if (json.movies) {
                 json.movies.forEach(item => {
-                    value.push({ title: item.title, img: item.poster_url })
+                    value.push({title: item.title, img: item.poster_url})
                 });
             }
             setstartMovies([...value]);
@@ -36,10 +36,11 @@ function Home() {
                 <p className='homeBar_text'>Upcoming Movies</p>
             </div>
             <div className='movieGrids'>
-                {startMovies.length !== 0 ? <SingleLineGridList data={startMovies} /> : <CircularProgress color="secondary" />}
+                {startMovies.length !== 0 ? <SingleLineGridList data={startMovies}/> :
+                    <CircularProgress color="secondary"/>}
             </div>
             <MovieReleasesProvider>
-                <MovieReleases />
+                <MovieReleases/>
             </MovieReleasesProvider>
         </div>);
 }

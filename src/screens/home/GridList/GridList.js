@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -55,14 +55,14 @@ const styles = theme => ({
  * ];
  */
 const SingleLineGridList = (props) => {
-    const { classes, data } = props;
+    const {classes, data} = props;
 
     return (
         <div className={classes.root}>
             <GridList className={classes.gridList} cols={2.5}>
                 {data.map((tile, index) => (
-                    <GridListTile key={`${tile.img}-${index}`} classes={{ root: classes.grid }}>
-                        <img src={tile.img} className='gridImage' alt={tile.title} />
+                    <GridListTile key={`${tile.img}-${index}`} classes={{root: classes.grid}}>
+                        <img src={tile.img} className='gridImage' alt={tile.title}/>
                         <GridListTileBar
                             title={tile.title}
                             classes={{
@@ -71,7 +71,7 @@ const SingleLineGridList = (props) => {
                             }}
                             actionIcon={
                                 <IconButton>
-                                    <StarBorderIcon className={classes.title} />
+                                    <StarBorderIcon className={classes.title}/>
                                 </IconButton>
                             }
                         />

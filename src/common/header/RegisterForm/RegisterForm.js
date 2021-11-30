@@ -1,9 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './RegisterForm.css';
-import { useFormik } from 'formik';
+import {useFormik} from 'formik';
 import * as yup from 'yup';
-import { Button, FormControl, FormHelperText, IconButton, Input, InputAdornment, InputLabel, Typography } from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
+import {
+    Button,
+    FormControl,
+    FormHelperText,
+    IconButton,
+    Input,
+    InputAdornment,
+    InputLabel,
+    Typography
+} from '@material-ui/core';
+import {Visibility, VisibilityOff} from '@material-ui/icons';
 import {useGlobals} from "../../store";
 
 
@@ -32,7 +41,6 @@ const validationSchema = yup.object({
 });
 
 
-
 const RegisterForm = () => {
 
     const [values, setValues] = React.useState({
@@ -40,7 +48,7 @@ const RegisterForm = () => {
         isRegisterSuccess: false
     });
 
-    const {isRegistered,callSignUp }=useGlobals();
+    const {isRegistered, callSignUp} = useGlobals();
 
     const formik = useFormik({
         initialValues: {
@@ -53,13 +61,13 @@ const RegisterForm = () => {
         validationSchema: validationSchema,
         onSubmit: values => {
             callSignUp(values);
-            setValues({ ...values, isRegisterSuccess: true });
+            setValues({...values, isRegisterSuccess: true});
         },
     });
 
 
     const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
+        setValues({...values, showPassword: !values.showPassword});
     };
 
     const handleMouseDownPassword = (event) => {
@@ -82,7 +90,8 @@ const RegisterForm = () => {
                     onChange={formik.handleChange}
                     aria-describedby="firstName"
                 />
-                <FormHelperText id="firstName-error-text">{formik.touched.firstName && formik.errors.firstName}</FormHelperText>
+                <FormHelperText
+                    id="firstName-error-text">{formik.touched.firstName && formik.errors.firstName}</FormHelperText>
             </FormControl>
 
             <FormControl fullWidth required error={formik.touched.lastName && Boolean(formik.errors.lastName)}>
@@ -95,7 +104,8 @@ const RegisterForm = () => {
                     onChange={formik.handleChange}
                     aria-describedby="lastName"
                 />
-                <FormHelperText id="lastName-error-text">{formik.touched.lastName && formik.errors.lastName}</FormHelperText>
+                <FormHelperText
+                    id="lastName-error-text">{formik.touched.lastName && formik.errors.lastName}</FormHelperText>
             </FormControl>
 
             <FormControl fullWidth required error={formik.touched.email && Boolean(formik.errors.email)}>
@@ -127,15 +137,17 @@ const RegisterForm = () => {
                                 onClick={handleClickShowPassword}
                                 onMouseDown={handleMouseDownPassword}
                             >
-                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                {values.showPassword ? <Visibility/> : <VisibilityOff/>}
                             </IconButton>
                         </InputAdornment>
                     }
                 />
-                <FormHelperText id="password-error-text">{formik.touched.password && formik.errors.password}</FormHelperText>
+                <FormHelperText
+                    id="password-error-text">{formik.touched.password && formik.errors.password}</FormHelperText>
             </FormControl>
 
-            <FormControl fullWidth required error={formik.touched.contactNumber && Boolean(formik.errors.contactNumber)}>
+            <FormControl fullWidth required
+                         error={formik.touched.contactNumber && Boolean(formik.errors.contactNumber)}>
                 <InputLabel htmlFor="contactNumber">Contact Number</InputLabel>
                 <Input
                     id="contactNumber"
@@ -145,7 +157,8 @@ const RegisterForm = () => {
                     onChange={formik.handleChange}
                     aria-describedby="contactNumber"
                 />
-                <FormHelperText id="contactNumber-error-text">{formik.touched.contactNumber && formik.errors.contactNumber}</FormHelperText>
+                <FormHelperText
+                    id="contactNumber-error-text">{formik.touched.contactNumber && formik.errors.contactNumber}</FormHelperText>
             </FormControl>
             <Typography>{isRegistered ? "Registration Successful. Please Login!" : ''}</Typography>
             <Button type='submit' variant='contained' color='primary'>REGISTER</Button>

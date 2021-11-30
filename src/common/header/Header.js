@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import {Button} from '@material-ui/core';
 import React from 'react';
 import logo from '../../assets/logo.svg';
 import './Header.css';
@@ -12,25 +12,26 @@ import {useGlobals} from "../store";
 Modal.setAppElement("#root");
 
 function Header(props) {
-    const {isLoggedIn,modalIsOpen,toggleModal} =useGlobals();
-    const {baseUrl} =props;
+    const {isLoggedIn, modalIsOpen, toggleModal} = useGlobals();
+    const {baseUrl} = props;
     console.log(baseUrl)
     return (
         <div className='header'>
             <div className='header_img'>
-                <img src={logo} alt="logo" />
+                <img src={logo} alt="logo"/>
             </div>
             <div className='header_buttons'>
-                {baseUrl.includes('/movie/') ? <Button variant='contained' color='primary'>BOOK SHOW</Button> :""}
-                {isLoggedIn ?  <Button variant='contained' color='default'>LOGOUT</Button> : <Button variant='contained' onClick={toggleModal} color='default'>LOGIN</Button> }
+                {baseUrl.includes('/movie/') ? <Button variant='contained' color='primary'>BOOK SHOW</Button> : ""}
+                {isLoggedIn ? <Button variant='contained' color='default'>LOGOUT</Button> :
+                    <Button variant='contained' onClick={toggleModal} color='default'>LOGIN</Button>}
             </div>
             <CustomModal
                 modalName='Login and register'
                 toggleModal={toggleModal}
                 modalIsOpen={modalIsOpen}
             >
-                <CenterTabs tabs={[{ tabName: "LOGIN", tabContent: <LoginForm /> },
-                { tabName: "REGISTER", tabContent: <RegisterForm /> }]} />
+                <CenterTabs tabs={[{tabName: "LOGIN", tabContent: <LoginForm/>},
+                    {tabName: "REGISTER", tabContent: <RegisterForm/>}]}/>
             </CustomModal>
         </div>)
 }

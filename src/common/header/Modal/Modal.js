@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 Modal.setAppElement("#root");
 
 const CustomModal = (props) => {
-    const { modalName, modalIsOpen, toggleModal, children } = props;
+    const {modalName, modalIsOpen, toggleModal, children} = props;
 
 
     const customStyles = {

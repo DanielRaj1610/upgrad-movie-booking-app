@@ -1,10 +1,10 @@
-import { Card, CardContent, GridList, GridListTile, GridListTileBar } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import {Card, CardContent, GridList, GridListTile, GridListTileBar} from '@material-ui/core';
+import {withStyles} from '@material-ui/core/styles';
 import React from 'react';
-import { Link  } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './MovieReleases.css';
 import MovieFilters from './MovieFilters/MovieFilters';
-import { useMovieReleases } from '../Store';
+import {useMovieReleases} from '../Store';
 
 
 const styles = theme => ({
@@ -36,12 +36,10 @@ const styles = theme => ({
 });
 
 
-
 const MovieReleases = (props) => {
-    const { classes } = props;
-    const { movies, ismoviesLoaded } = useMovieReleases();
+    const {classes} = props;
+    const {movies, ismoviesLoaded} = useMovieReleases();
     // const history = useHistory();
-
 
 
     const dateConversion = (value) => {
@@ -55,11 +53,11 @@ const MovieReleases = (props) => {
         ismoviesLoaded > 0 ?
             <div className='movieReleases'>
                 <div className='movies'>
-                    <GridList cellHeight={350} cols={4} classes={{ root: classes.overallGrid }}>
+                    <GridList cellHeight={350} cols={4} classes={{root: classes.overallGrid}}>
                         {movies.map((tile, index) => (
-                            <GridListTile key={`${tile.img}-${index}`} classes={{ root: classes.overallTile }}
-                                          onClick={() =>console.log(tile)} component={Link} to={`/movie/${tile.id}`}>
-                                <img src={tile.poster_url} className='gridImage' alt={tile.title} />
+                            <GridListTile key={`${tile.img}-${index}`} classes={{root: classes.overallTile}}
+                                          onClick={() => console.log(tile)} component={Link} to={`/movie/${tile.id}`}>
+                                <img src={tile.poster_url} className='gridImage' alt={tile.title}/>
                                 <GridListTileBar
                                     title={tile.title}
                                     subtitle={<span>Release Date: {dateConversion(tile.release_date)}</span>}
@@ -75,7 +73,7 @@ const MovieReleases = (props) => {
                 <div className='filters'>
                     <Card className={classes.card}>
                         <CardContent>
-                            <MovieFilters movies={movies} />
+                            <MovieFilters movies={movies}/>
                         </CardContent>
                     </Card>
                 </div>

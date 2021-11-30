@@ -1,8 +1,9 @@
 .homeBar {
-	background-color: #ff9999;
-	padding: 8px;
-	text-align: center;
+    background-color: #ff9999;
+    padding: 8px;
+    text-align: center;
 }
+
 .homeBar_text {
-	font-size: 1rem;
+    font-size: 1rem;
 }
